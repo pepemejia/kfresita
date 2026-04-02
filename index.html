@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>K-Fresita</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="#inicio" class="brand" id="brandName">K-Fresita</a>
+        <nav class="nav">
+          <a href="#nosotros">Nosotros</a>
+          <a href="#menu">Menú</a>
+          <a href="#operacion">Operación</a>
+          <a href="#local">Local</a>
+          <a href="#pedido-online">Pedido en línea</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <a class="button gold" href="#pedido-online" id="ctaButton">Haz tu pedido</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="section-kicker gold-text" id="heroBadge">Explosión de sabores</p>
+            <h1 id="heroTitle">Fresas con chocolate que enamoran desde la primera compra.</h1>
+            <p class="hero-description" id="heroDescription"></p>
+            <div class="hero-actions">
+              <a class="button gold" href="#menu">Ver especialidades</a>
+              <a class="button outline" href="#nosotros">Conocer marca</a>
+            </div>
+            <div class="mini-highlights">
+              <span>Producto premium</span>
+              <span>Regalos y eventos</span>
+              <span>Precios accesibles</span>
+            </div>
+          </div>
+
+          <article class="hero-card">
+            <img src="./images/hero-fresas.svg" alt="Fresas con chocolate K-Fresita" class="hero-image" />
+            <div class="hero-card-inner hero-overlay">
+              <span class="hero-chip">K-Fresita</span>
+              <p class="hero-label">EDICIONES PREMIUM</p>
+              <h2>Detalles dulces para cada ocasión</h2>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="nosotros">
+        <div class="container two-col">
+          <article class="panel accent-panel">
+            <p class="section-kicker">¿Quiénes somos?</p>
+            <h2 id="aboutTitle"></h2>
+            <p id="aboutDescription"></p>
+          </article>
+          <div class="stack">
+            <article class="panel">
+              <p class="section-kicker gold-text">Valores</p>
+              <div class="card-grid" id="valuesGrid"></div>
+            </article>
+            <div class="card-grid two">
+              <article class="panel small-panel">
+                <p class="section-kicker gold-text">Misión</p>
+                <p id="missionText"></p>
+              </article>
+              <article class="panel small-panel">
+                <p class="section-kicker gold-text">Visión</p>
+                <p id="visionText"></p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt-bg" id="menu">
+        <div class="container">
+          <div class="section-top">
+            <div>
+              <p class="section-kicker gold-text">Menú</p>
+              <h2>Menú base y complementos para personalizar cada pedido.</h2>
+              <p>Desde fresas individuales hasta arreglos especiales y bebidas, con múltiples toppings para crear combinaciones únicas.</p>
+            </div>
+          </div>
+          <div class="menu-grid" id="menuGrid"></div>
+          <article class="panel tags-panel">
+            <div class="section-top">
+              <div>
+                <p class="section-kicker gold-text">Toppings</p>
+                <h3>Toppings disponibles</h3>
+              </div>
+            </div>
+            <div class="tags-wrap" id="toppingsList"></div>
+          </article>
+        </div>
+      </section>
+
+
+      <section class="section" id="horario-atencion">
+  <div class="container">
+    <div class="hours-box">
+      <p class="section-kicker gold-text">Horario de atención</p>
+      <h2>Días y horarios de servicio.</h2>
+      <p class="hours-intro">
+        Consulta aquí nuestros días de atención y horarios disponibles.
+      </p>
+
+      <div class="hours-card">
+        <div class="hours-row">
+          <span class="hours-day">Lunes a Viernes</span>
+          <span class="hours-time">10:00 AM – 8:00 PM</span>
+        </div>
+
+        <div class="hours-row">
+          <span class="hours-day">Sábado</span>
+          <span class="hours-time">10:00 AM – 9:00 PM</span>
+        </div>
+
+        <div class="hours-row">
+          <span class="hours-day">Domingo</span>
+          <span class="hours-time">11:00 AM – 7:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+     
+
+      <section class="section order-section" id="pedido-online">
+  <div class="container">
+    <div class="order-shell">
+      <div class="order-left">
+        <p class="section-kicker gold-text">Pedido en línea</p>
+        <h2>Haz tu pedido en pocos pasos.</h2>
+        <p class="order-intro">
+          Selecciona entrega, elige productos, personaliza tu pedido y revisa el total antes de enviarlo.
+        </p>
+
+        <div class="delivery-bar">
+          <div class="delivery-input">
+            <label for="deliveryAddress">Dirección o punto de entrega</label>
+            <input
+              type="text"
+              id="deliveryAddress"
+              name="deliveryAddress"
+              placeholder="Ej. Plaza Q, Pachuca"
+            />
+          </div>
+
+          <div class="delivery-select">
+            <label for="deliveryMode">Tipo</label>
+            <select id="deliveryMode" name="deliveryMode">
+              <option value="domicilio">A domicilio</option>
+              <option value="recoger">Recoger en tienda</option>
+            </select>
+          </div>
+
+          <div class="delivery-select">
+            <label for="deliveryWhen">Horario</label>
+            <select id="deliveryWhen" name="deliveryWhen">
+              <option value="ahora">Lo antes posible</option>
+              <option value="programado">Programar pedido</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="category-pills" id="categoryPills">
+          <button class="pill active" type="button" data-category="all">Todo</button>
+          <button class="pill" type="button" data-category="fresas">Fresas</button>
+          <button class="pill" type="button" data-category="regalos">Regalos</button>
+          <button class="pill" type="button" data-category="especiales">Especiales</button>
+          <button class="pill" type="button" data-category="bebidas">Bebidas</button>
+        </div>
+
+        <div class="dynamic-order-grid" id="dynamicOrderGrid"></div>
+      </div>
+
+      <aside class="order-right">
+        <article class="panel order-summary-card">
+          <div class="summary-head">
+            <h3>Tu pedido</h3>
+            <span id="cartCount">0 productos</span>
+          </div>
+
+          <div id="cartItems" class="cart-items">
+            <p class="empty-cart">Aún no agregas productos.</p>
+          </div>
+
+          <div class="summary-form">
+            <div class="mini-grid">
+              <label>
+                Nombre
+                <input type="text" id="customerName" placeholder="Tu nombre" />
+              </label>
+              <label>
+                Teléfono
+                <input type="tel" id="customerPhone" placeholder="Tu teléfono" />
+              </label>
+            </div>
+
+            <div class="mini-grid schedule-fields">
+              <label>
+                Fecha
+                <input type="date" id="deliveryDate" />
+              </label>
+              <label>
+                Hora
+                <input type="time" id="deliveryTime" />
+              </label>
+            </div>
+
+            <label>
+              Notas del pedido
+              <textarea id="orderNotes" placeholder="Ej. Sin nuez, agregar mensaje especial"></textarea>
+            </label>
+          </div>
+
+          <div class="summary-totals">
+            <div>
+              <span>Subtotal</span>
+              <strong id="cartSubtotal">$0.00</strong>
+            </div>
+            <div>
+              <span>Envío estimado</span>
+              <strong id="cartDelivery">$35.00</strong>
+            </div>
+            <div class="summary-total-row">
+              <span>Total</span>
+              <strong id="cartTotal">$35.00</strong>
+            </div>
+          </div>
+
+          <div class="inline-actions cart-actions">
+            <button type="button" id="submitDynamicOrder">Enviar pedido</button>
+            <button type="button" class="small-btn" id="clearCart">Vaciar</button>
+          </div>
+
+          <p id="orderStatus" class="status"></p>
+        </article>
+      </aside>
+    </div>
+  </div>
+</section>
+
+      <section class="section contact" id="contacto">
+        <div class="container">
+          <article class="contact-panel">
+            <div>
+              <p class="section-kicker light-kicker">Contacto</p>
+              <h2>Haz que cada ocasión se vea y sepa increíble.</h2>
+              <p id="contactText"></p>
+            </div>
+            <div class="inline-actions"><a class="button gold" href="#pedido-online">Ir a pedido en línea</a></div>
+            <div class="card-grid three top-gap">
+              <article class="card"><h3>Correo</h3><p id="contactEmail"></p></article>
+              <article class="card"><h3>Teléfono</h3><p id="contactPhone"></p></article>
+              <article class="card"><h3>Modelo</h3><p id="contactModel"></p></article>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
