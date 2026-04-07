@@ -21,22 +21,26 @@ const supabaseClient = (window.supabase && supabaseConfig?.url && supabaseConfig
 function $(id) { return document.getElementById(id); }
 function money(value) { return `$${Number(value || 0).toFixed(2)}`; }
 function safeArray(value) { return Array.isArray(value) ? value : []; }
+
 function setText(id, value, fallback = '') {
   const el = $(id);
   if (el) el.textContent = value ?? fallback;
 }
+
 function createTag(text) {
   const span = document.createElement('span');
   span.className = 'tag';
   span.textContent = text;
   return span;
 }
+
 function createValueCard(text) {
   const article = document.createElement('article');
   article.className = 'card';
   article.innerHTML = `<p>${text}</p>`;
   return article;
 }
+
 function readStorage(key, fallback) {
   try {
     const raw = localStorage.getItem(key);
@@ -46,6 +50,7 @@ function readStorage(key, fallback) {
     return fallback;
   }
 }
+
 function writeStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
@@ -206,44 +211,68 @@ function renderDynamicOrderProducts() {
     const card = document.createElement('article');
     card.className = 'order-product-card';
 
-    const safeTitle = (item.title || 'Producto').replace(/\s+/g, '_');
-    const qtyId = `qty_${safeTitle}_${Math.random().toString(36).slice(2, 6)}`;
     const imageSrc = item.image || '/images/hero-fresas.svg';
 
     card.innerHTML = `
       <div class="order-product-media">
         <img src="${imageSrc}" alt="${item.title || 'Producto'}">
       </div>
+
       <div class="order-product-content">
-        <div>
-          <h3>${item.title || 'Producto'}</h3>
-          <p>${item.description || ''}</p>
-        </div>
+        <h3>${item.title || 'Producto'}</h3>
+        <p class="order-product-description">${item.description || ''}</p>
+
         <div class="order-product-bottom">
           <strong>${money(item.price)}</strong>
-          <div class="order-product-actions">
-            <label for="${qtyId}">Cantidad</label>
-            <input type="number" id="${qtyId}" min="1" value="1">
-            <button type="button" class="small-btn add-cart-btn">Agregar</button>
+
+          <div class="order-product-actions compact-actions">
+            <button type="button" class="qty-btn qty-minus">−</button>
+            <span class="qty-display">0</span>
+            <button type="button" class="qty-btn qty-plus">+</button>
           </div>
         </div>
       </div>
     `;
 
-    card.querySelector('.add-cart-btn')?.addEventListener('click', () => {
-      const quantity = Number(card.querySelector(`#${qtyId}`)?.value || 1);
-      if (quantity <= 0) return;
+    const qtyDisplay = card.querySelector('.qty-display');
+    const plusBtn = card.querySelector('.qty-plus');
+    const minusBtn = card.querySelector('.qty-minus');
 
-      const existing = state.dynamicCart.find((product) => product.id === item.id);
+    function getCartItem() {
+      return state.dynamicCart.find((product) => product.id === item.id);
+    }
+
+    function syncQtyUI() {
+      const cartItem = getCartItem();
+      qtyDisplay.textContent = String(cartItem ? cartItem.quantity : 0);
+    }
+
+    plusBtn?.addEventListener('click', () => {
+      const existing = getCartItem();
       if (existing) {
-        existing.quantity += quantity;
+        existing.quantity += 1;
       } else {
-        state.dynamicCart.push({ ...item, quantity });
+        state.dynamicCart.push({ ...item, quantity: 1 });
       }
-
+      syncQtyUI();
       renderCart();
     });
 
+    minusBtn?.addEventListener('click', () => {
+      const existing = getCartItem();
+      if (!existing) return;
+
+      existing.quantity -= 1;
+
+      if (existing.quantity <= 0) {
+        state.dynamicCart = state.dynamicCart.filter((product) => product.id !== item.id);
+      }
+
+      syncQtyUI();
+      renderCart();
+    });
+
+    syncQtyUI();
     grid.appendChild(card);
   });
 }
@@ -268,24 +297,39 @@ function renderCart() {
     list.innerHTML = '<p class="empty-cart">Aún no agregas productos.</p>';
   }
 
-  state.dynamicCart.forEach((item, index) => {
+  state.dynamicCart.forEach((item) => {
     const row = document.createElement('div');
     row.className = 'cart-item-row';
 
     row.innerHTML = `
-      <div>
+      <div class="cart-item-main">
         <strong>${item.title}</strong>
-        <p>${item.quantity} × ${money(item.price)}</p>
+        <p>${money(item.price)} c/u</p>
       </div>
+
       <div class="cart-item-side">
+        <div class="cart-qty-controls">
+          <button type="button" class="qty-btn cart-minus">−</button>
+          <span class="qty-display">${item.quantity}</span>
+          <button type="button" class="qty-btn cart-plus">+</button>
+        </div>
         <strong>${money(item.quantity * item.price)}</strong>
-        <button type="button" class="small-btn" data-index="${index}">Quitar</button>
       </div>
     `;
 
-    row.querySelector('button')?.addEventListener('click', () => {
-      state.dynamicCart.splice(index, 1);
+    row.querySelector('.cart-plus')?.addEventListener('click', () => {
+      item.quantity += 1;
       renderCart();
+      renderDynamicOrderProducts();
+    });
+
+    row.querySelector('.cart-minus')?.addEventListener('click', () => {
+      item.quantity -= 1;
+      if (item.quantity <= 0) {
+        state.dynamicCart = state.dynamicCart.filter((product) => product.id !== item.id);
+      }
+      renderCart();
+      renderDynamicOrderProducts();
     });
 
     list.appendChild(row);
@@ -426,6 +470,7 @@ async function submitWhatsAppOrder() {
 
   state.dynamicCart = [];
   renderCart();
+  renderDynamicOrderProducts();
 }
 
 function setupDynamicOrderExperience() {
@@ -440,6 +485,7 @@ function setupDynamicOrderExperience() {
   $('clearCart')?.addEventListener('click', () => {
     state.dynamicCart = [];
     renderCart();
+    renderDynamicOrderProducts();
   });
 
   $('submitDynamicOrder')?.addEventListener('click', submitWhatsAppOrder);
