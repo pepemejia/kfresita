@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Administrador | K-Fresita</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="admin-body">
+    <main class="section admin-shell">
+      <div class="container">
+        <section class="admin-login-panel" id="adminLoginPanel">
+          <p class="section-kicker gold-text">Administrador</p>
+          <h1>Panel de control K-Fresita</h1>
+          <p>Inicia sesión para ver pedidos, cambiar estatus y administrar productos.</p>
+
+          <div class="panel setup-note">
+            <strong>Modo producción con Supabase</strong>
+            <p>Este panel usa login real y base de datos cuando completes <code>/supabase-config.js</code>. Si todavía no lo configuras, seguirá funcionando en modo local de prueba.</p>
+          </div>
+
+          <form id="adminLoginForm" class="admin-login-form">
+            <label>
+              Correo
+              <input type="email" id="adminEmail" placeholder="admin@kfresita.com" autocomplete="email" />
+            </label>
+            <label>
+              Contraseña
+              <input type="password" id="adminPassword" placeholder="Escribe tu contraseña" autocomplete="current-password" />
+            </label>
+            <button type="submit" class="button gold">Entrar</button>
+          </form>
+
+          <div class="inline-actions wrap-actions">
+            <button type="button" id="showLocalAccess" class="button outline">Usar modo local</button>
+            <a href="/" class="button outline">Volver al sitio</a>
+          </div>
+          <p id="adminLoginStatus" class="status"></p>
+        </section>
+
+        <section id="adminDashboard" class="admin-dashboard hidden">
+          <div class="admin-topbar panel">
+            <div>
+              <p class="section-kicker gold-text">Resumen</p>
+              <h1>Administrador K-Fresita</h1>
+              <p id="adminConnectionBadge" class="admin-connection-badge">Conectando...</p>
+            </div>
+            <div class="inline-actions wrap-actions">
+              <a href="/" class="button outline">Ver sitio</a>
+              <button type="button" id="syncAdminData" class="small-btn">Sincronizar</button>
+              <button type="button" id="logoutAdmin" class="small-btn">Cerrar sesión</button>
+            </div>
+          </div>
+
+          <div class="admin-stats-grid">
+            <article class="panel stat-card">
+              <span>Pedidos guardados</span>
+              <strong id="ordersCount">0</strong>
+            </article>
+            <article class="panel stat-card">
+              <span>Ingresos estimados</span>
+              <strong id="ordersRevenue">$0.00</strong>
+            </article>
+            <article class="panel stat-card">
+              <span>Productos activos</span>
+              <strong id="productsCount">0</strong>
+            </article>
+          </div>
+
+          <div class="admin-grid">
+            <section class="panel">
+              <div class="section-top compact-top">
+                <div>
+                  <p class="section-kicker gold-text">Pedidos</p>
+                  <h2>Historial de pedidos</h2>
+                </div>
+                <div class="inline-actions wrap-actions">
+                  <select id="orderStatusFilter" class="admin-filter-select">
+                    <option value="all">Todos</option>
+                    <option value="nuevo">Nuevos</option>
+                    <option value="preparando">Preparando</option>
+                    <option value="listo">Listos</option>
+                    <option value="entregado">Entregados</option>
+                    <option value="cancelado">Cancelados</option>
+                  </select>
+                  <button type="button" id="clearOrders" class="small-btn">Borrar pedidos locales</button>
+                </div>
+              </div>
+              <div id="ordersList" class="admin-orders-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="section-top compact-top">
+                <div>
+                  <p class="section-kicker gold-text">Productos</p>
+                  <h2>Administrar productos</h2>
+                </div>
+                <button type="button" id="resetProducts" class="small-btn">Restaurar base</button>
+              </div>
+
+              <form id="productForm" class="admin-product-form">
+                <div class="mini-grid">
+                  <label>
+                    Nombre
+                    <input type="text" id="productTitle" required placeholder="Ej. Caja premium" />
+                  </label>
+                  <label>
+                    Precio
+                    <input type="number" id="productPrice" min="0" step="0.01" required placeholder="180" />
+                  </label>
+                </div>
+                <label>
+                  Descripción
+                  <textarea id="productDescription" required placeholder="Describe el producto"></textarea>
+                </label>
+                <div class="mini-grid">
+                  <label>
+                    Categoría
+                    <select id="productCategory">
+                      <option value="fresas">Fresas</option>
+                      <option value="regalos">Regalos</option>
+                      <option value="especiales">Especiales</option>
+                      <option value="bebidas">Bebidas</option>
+                    </select>
+                  </label>
+                  <label>
+                    Imagen
+                    <select id="productImage">
+                      <option value="/images/fresas-individuales.svg">Fresas individuales</option>
+                      <option value="/images/caja-regalo.svg">Caja regalo</option>
+                      <option value="/images/arreglo-especial.svg">Arreglo especial</option>
+                      <option value="/images/bebida-fresa.svg">Bebida</option>
+                      <option value="/images/hero-fresas.svg">Hero fresas</option>
+                    </select>
+                  </label>
+                </div>
+                <button type="submit" class="button gold">Agregar producto</button>
+              </form>
+
+              <div id="productsAdminList" class="products-admin-list"></div>
+              <p id="adminProductStatus" class="status"></p>
+            </section>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/supabase-config.js"></script>
+    <script src="/admin.js"></script>
+  </body>
+</html>

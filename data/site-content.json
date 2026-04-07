@@ -1,0 +1,69 @@
+{
+  "hero": {
+    "badge": "Explosión de sabores",
+    "title": "Fresas con chocolate que enamoran desde la primera compra.",
+    "description": "K-Fresita es una propuesta premium de fresas con chocolate, con excelente sabor, gran presentación y precios accesibles."
+  },
+  "about": {
+    "title": "Una experiencia premium, accesible y memorable.",
+    "description": "K-Fresita busca cautivar a sus consumidores desde la primera compra, incentivando el regreso de clientes gracias a su mezcla de calidad, presentación, sabor y precio."
+  },
+  "values": [
+    "Producto premium con excelente sabor y presentación.",
+    "Responsabilidad social y atención sin discriminación.",
+    "Uso de materiales reciclados para cuidar el ambiente.",
+    "Servicio excepcional para impulsar recompra y fidelidad."
+  ],
+  "mission": "Ofrecer fresas elaboradas con ingredientes frescos y seleccionados, siguiendo altos estándares de calidad y servicio.",
+  "vision": "Consolidarse como un referente en fresas con chocolate, reconocido por excelencia en calidad, higiene y sabor.",
+  "menu": [
+    {
+      "title": "Fresas individuales",
+      "description": "Con chocolate oscuro, blanco o de leche.",
+      "price": 45,
+      "image": "/images/fresas-individuales.svg"
+    },
+    {
+      "title": "Caja de regalo",
+      "description": "Presentaciones de 6, 12 y 24 fresas para sorprender.",
+      "price": 180,
+      "image": "/images/caja-regalo.svg"
+    },
+    {
+      "title": "Arreglo especial",
+      "description": "Opciones para cumpleaños, aniversarios y fechas especiales.",
+      "price": 260,
+      "image": "/images/arreglo-especial.svg"
+    },
+    {
+      "title": "Bebida",
+      "description": "Malteadas de fresa, smoothies y aguas frescas.",
+      "price": 65,
+      "image": "/images/bebida-fresa.svg"
+    }
+  ],
+  "toppings": [
+    "Nueces",
+    "Sprinkles de colores",
+    "Galleta Oreo",
+    "Coco rallado",
+    "Chispas de chocolate",
+    "Almendras",
+    "Decoración personalizada"
+  ],
+  "hours": [
+    {
+      "day": "Lunes a Viernes",
+      "time": "10:00 AM – 8:00 PM"
+    },
+    {
+      "day": "Sábado",
+      "time": "10:00 AM – 9:00 PM"
+    },
+    {
+      "day": "Domingo",
+      "time": "11:00 AM – 7:00 PM"
+    }
+  ],
+  "contactText": "K-Fresita puede operar como una marca ideal para venta directa, regalos y eventos especiales, con un concepto premium visualmente atractivo y fácil de promocionar."
+}
