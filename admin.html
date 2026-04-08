@@ -124,15 +124,14 @@
                     </select>
                   </label>
                   <label>
-                    Imagen
-                    <select id="productImage">
-                      <option value="/images/fresas-individuales.svg">Fresas individuales</option>
-                      <option value="/images/caja-regalo.svg">Caja regalo</option>
-                      <option value="/images/arreglo-especial.svg">Arreglo especial</option>
-                      <option value="/images/bebida-fresa.svg">Bebida</option>
-                      <option value="/images/hero-fresas.svg">Hero fresas</option>
-                    </select>
+                    Imagen del producto
+                    <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" />
+                    <small>Sube una imagen JPG, PNG o WEBP.</small>
                   </label>
+
+              <div id="productImagePreviewWrap" class="product-image-preview-wrap hidden">
+                <img id="productImagePreview" class="product-image-preview" alt="Vista previa" />
+              </div>
                 </div>
                 <button type="submit" class="button gold">Agregar producto</button>
               </form>
