@@ -3,6 +3,7 @@ const STORAGE_KEYS = {
   orders: 'kfresita_orders',
   adminSession: 'kfresita_admin_session'
 };
+
 const MENU_VISIBLE_COUNT = 5;
 
 const state = {
@@ -11,8 +12,8 @@ const state = {
   dynamicCart: [],
   activeCategory: 'all',
   productsSource: 'local',
-  remoteMenu: []
-  menuExpanded: false,
+  remoteMenu: [],
+  menuExpanded: false
 };
 
 const supabaseConfig = window.KFRESITA_SUPABASE || null;
@@ -62,13 +63,9 @@ function mapCategory(title = '') {
 
   if (
     text.includes('malteada') ||
-    text.includes('fresa mediana') ||
-    text.includes('fresa grande') ||
     text.includes('vainilla') ||
     text.includes('plátano') ||
-    text.includes('banana') ||
-    text.includes('chocolate mediana') ||
-    text.includes('chocolate grande')
+    text.includes('platano')
   ) return 'malteadas';
 
   if (text.includes('combo')) return 'combos';
@@ -76,7 +73,8 @@ function mapCategory(title = '') {
   if (
     text.includes('hotcakes') ||
     text.includes('plátanos machos') ||
-    text.includes('platano macho')
+    text.includes('platano macho') ||
+    text.includes('especial')
   ) return 'especiales';
 
   return 'fresas';
@@ -143,6 +141,33 @@ function renderHours() {
   });
 }
 
+function applyMenuVisibility() {
+  const grid = $('menuGrid');
+  const toggleBtn = $('toggleMenuBtn');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.menu-card'));
+
+  if (!cards.length) {
+    if (toggleBtn) toggleBtn.classList.add('hidden');
+    return;
+  }
+
+  cards.forEach((card, index) => {
+    const shouldShow = state.menuExpanded || index < MENU_VISIBLE_COUNT;
+    card.style.display = shouldShow ? '' : 'none';
+  });
+
+  if (toggleBtn) {
+    if (cards.length <= MENU_VISIBLE_COUNT) {
+      toggleBtn.classList.add('hidden');
+    } else {
+      toggleBtn.classList.remove('hidden');
+      toggleBtn.textContent = state.menuExpanded ? 'Ver menos' : 'Ver más';
+    }
+  }
+}
+
 function renderMenu() {
   const grid = $('menuGrid');
   if (!grid) return;
@@ -177,15 +202,17 @@ function renderMenu() {
 
   applyMenuVisibility();
 }
+
 function setupMenuToggle() {
   const toggleBtn = $('toggleMenuBtn');
   if (!toggleBtn) return;
 
   toggleBtn.addEventListener('click', () => {
     state.menuExpanded = !state.menuExpanded;
-    renderMenu();
+    applyMenuVisibility();
   });
 }
+
 function renderHeroAndContent() {
   const hero = state.content.hero || {};
   const about = state.content.about || {};
@@ -560,11 +587,11 @@ async function loadSite() {
 
   await syncProductsFromSupabase();
 
+  setupMenuToggle();
   renderHeroAndContent();
   setupDynamicOrderExperience();
   renderMenu();
   renderDynamicOrderProducts();
-  setupMenuToggle();
   renderCart();
 }
 
