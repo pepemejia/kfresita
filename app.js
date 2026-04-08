@@ -145,17 +145,11 @@ function renderHours() {
 
 function renderMenu() {
   const grid = $('menuGrid');
-  const toggleBtn = $('toggleMenuBtn');
   if (!grid) return;
-
-  const allItems = getActiveMenu();
-  const visibleItems = state.menuExpanded
-    ? allItems
-    : allItems.slice(0, MENU_VISIBLE_COUNT);
 
   grid.innerHTML = '';
 
-  visibleItems.forEach((item, index) => {
+  getActiveMenu().forEach((item, index) => {
     const article = document.createElement('article');
     article.className = 'menu-card glass-liquid-card';
 
@@ -181,14 +175,7 @@ function renderMenu() {
     grid.appendChild(article);
   });
 
-  if (toggleBtn) {
-    if (allItems.length <= MENU_VISIBLE_COUNT) {
-      toggleBtn.classList.add('hidden');
-    } else {
-      toggleBtn.classList.remove('hidden');
-      toggleBtn.textContent = state.menuExpanded ? 'Ver menos' : 'Ver más';
-    }
-  }
+  applyMenuVisibility();
 }
 function setupMenuToggle() {
   const toggleBtn = $('toggleMenuBtn');
