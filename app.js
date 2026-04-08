@@ -3,6 +3,7 @@ const STORAGE_KEYS = {
   orders: 'kfresita_orders',
   adminSession: 'kfresita_admin_session'
 };
+const MENU_VISIBLE_COUNT = 5;
 
 const state = {
   config: {},
@@ -11,6 +12,7 @@ const state = {
   activeCategory: 'all',
   productsSource: 'local',
   remoteMenu: []
+  menuExpanded: false,
 };
 
 const supabaseConfig = window.KFRESITA_SUPABASE || null;
@@ -143,11 +145,17 @@ function renderHours() {
 
 function renderMenu() {
   const grid = $('menuGrid');
+  const toggleBtn = $('toggleMenuBtn');
   if (!grid) return;
+
+  const allItems = getActiveMenu();
+  const visibleItems = state.menuExpanded
+    ? allItems
+    : allItems.slice(0, MENU_VISIBLE_COUNT);
 
   grid.innerHTML = '';
 
-  getActiveMenu().forEach((item, index) => {
+  visibleItems.forEach((item, index) => {
     const article = document.createElement('article');
     article.className = 'menu-card glass-liquid-card';
 
@@ -172,8 +180,25 @@ function renderMenu() {
 
     grid.appendChild(article);
   });
-}
 
+  if (toggleBtn) {
+    if (allItems.length <= MENU_VISIBLE_COUNT) {
+      toggleBtn.classList.add('hidden');
+    } else {
+      toggleBtn.classList.remove('hidden');
+      toggleBtn.textContent = state.menuExpanded ? 'Ver menos' : 'Ver más';
+    }
+  }
+}
+function setupMenuToggle() {
+  const toggleBtn = $('toggleMenuBtn');
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener('click', () => {
+    state.menuExpanded = !state.menuExpanded;
+    renderMenu();
+  });
+}
 function renderHeroAndContent() {
   const hero = state.content.hero || {};
   const about = state.content.about || {};
@@ -552,6 +577,7 @@ async function loadSite() {
   setupDynamicOrderExperience();
   renderMenu();
   renderDynamicOrderProducts();
+  setupMenuToggle();
   renderCart();
 }
 
