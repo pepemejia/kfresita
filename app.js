@@ -57,9 +57,26 @@ function writeStorage(key, value) {
 
 function mapCategory(title = '') {
   const text = String(title).toLowerCase();
-  if (text.includes('bebida') || text.includes('smoothie') || text.includes('malteada')) return 'bebidas';
-  if (text.includes('caja') || text.includes('regalo')) return 'regalos';
-  if (text.includes('arreglo') || text.includes('especial')) return 'especiales';
+
+  if (
+    text.includes('malteada') ||
+    text.includes('fresa mediana') ||
+    text.includes('fresa grande') ||
+    text.includes('vainilla') ||
+    text.includes('plátano') ||
+    text.includes('banana') ||
+    text.includes('chocolate mediana') ||
+    text.includes('chocolate grande')
+  ) return 'malteadas';
+
+  if (text.includes('combo')) return 'combos';
+
+  if (
+    text.includes('hotcakes') ||
+    text.includes('plátanos machos') ||
+    text.includes('platano macho')
+  ) return 'especiales';
+
   return 'fresas';
 }
 
