@@ -69,7 +69,27 @@ function normalizeOrder(order = {}) {
     items: safeArray(order.items)
   };
 }
+function mapCategory(title = '') {
+  const text = String(title).toLowerCase();
 
+  if (
+    text.includes('malteada') ||
+    text.includes('vainilla') ||
+    text.includes('plátano') ||
+    text.includes('platano') ||
+    text.includes('chocolate')
+  ) return 'malteadas';
+
+  if (text.includes('combo')) return 'combos';
+
+  if (
+    text.includes('hotcakes') ||
+    text.includes('plátanos machos') ||
+    text.includes('platano macho')
+  ) return 'especiales';
+
+  return 'fresas';
+}
 function normalizeProduct(item = {}) {
   return {
     id: item.id || crypto.randomUUID(),
@@ -77,7 +97,7 @@ function normalizeProduct(item = {}) {
     description: item.description || '',
     price: Number(item.price || 0),
     image: item.image || '/images/hero-fresas.svg',
-    category: item.category || 'fresas',
+    category: item.category || mapCategory(item.title || item.name || ''),
     active: item.active !== false,
     created_at: item.created_at || new Date().toISOString()
   };
