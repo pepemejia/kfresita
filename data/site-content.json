@@ -22,7 +22,7 @@
       "title": "Fresas con chocolate Jr",
       "description": "Fresas cubiertas con chocolate. Tamaño Jr.",
       "price": 65,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/FC.png",
       "category": "fresas",
       "active": true
     },
@@ -31,7 +31,7 @@
       "title": "Fresas con chocolate Senior",
       "description": "Fresas cubiertas con chocolate. Tamaño Senior.",
       "price": 95,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/FC.png",
       "category": "fresas",
       "active": true
     },
@@ -40,7 +40,7 @@
       "title": "Fresas con chocolate blanco Jr",
       "description": "Fresas con chocolate blanco. Tamaño Jr.",
       "price": 69,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/FCB.png",
       "category": "fresas",
       "active": true
     },
@@ -49,7 +49,7 @@
       "title": "Fresas con chocolate blanco Senior",
       "description": "Fresas con chocolate blanco. Tamaño Senior.",
       "price": 99,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/FCB.png",
       "category": "fresas",
       "active": true
     },
@@ -58,7 +58,7 @@
       "title": "Fresas mix Jr",
       "description": "Chocolate negro y blanco. Tamaño Jr.",
       "price": 72,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/MIX.png",
       "category": "fresas",
       "active": true
     },
@@ -67,7 +67,7 @@
       "title": "Fresas mix Senior",
       "description": "Chocolate negro y blanco. Tamaño Senior.",
       "price": 105,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/MIX.png",
       "category": "fresas",
       "active": true
     },
@@ -94,7 +94,7 @@
       "title": "Fresas Dubai Jr",
       "description": "Especialidad Dubai. Tamaño Jr.",
       "price": 85,
-      "image": "/images/arreglo-especial.svg",
+      "image": "/images/FD.png",
       "category": "fresas",
       "active": true
     },
@@ -103,7 +103,7 @@
       "title": "Fresas Dubai Senior",
       "description": "Especialidad Dubai. Tamaño Senior.",
       "price": 125,
-      "image": "/images/arreglo-especial.svg",
+      "image": "/images/FD.png",
       "category": "fresas",
       "active": true
     },
@@ -112,7 +112,7 @@
       "title": "Mini hotcakes (12 piezas)",
       "description": "Incluye opciones: cajeta, nutella, chocolate o lechera.",
       "price": 89,
-      "image": "/images/arreglo-especial.svg",
+      "image": "/images/HOCAKE.png",
       "category": "especiales",
       "active": true
     },
@@ -121,7 +121,7 @@
       "title": "Plátanos machos K-Fresita Jr",
       "description": "Opciones: cajeta, nutella, chocolate o lechera.",
       "price": 70,
-      "image": "/images/arreglo-especial.svg",
+      "image": "/images/PLATANOS.png",
       "category": "especiales",
       "active": true
     },
@@ -130,7 +130,7 @@
       "title": "Plátanos machos K-Fresita Senior",
       "description": "Opciones: cajeta, nutella, chocolate o lechera.",
       "price": 98,
-      "image": "/images/arreglo-especial.svg",
+      "image": "/images/PLATANOS.png",
       "category": "especiales",
       "active": true
     },
