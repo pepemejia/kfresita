@@ -2,7 +2,7 @@
   "hero": {
     "badge": "Explosión de sabores",
     "title": "Fresas con chocolate que enamoran desde la primera compra.",
-    "description": "K-Fresita es una propuesta premium de fresas con chocolate, con excelente sabor, gran presentación y precios accesibles."
+    "description": "K-Fresita es una propuesta premium de fresas con chocolate, malteadas y combos irresistibles."
   },
   "about": {
     "title": "Una experiencia premium, accesible y memorable.",
@@ -18,38 +18,240 @@
   "vision": "Consolidarse como un referente en fresas con chocolate, reconocido por excelencia en calidad, higiene y sabor.",
   "menu": [
     {
-      "title": "Fresas individuales",
-      "description": "Con chocolate oscuro, blanco o de leche.",
-      "price": 45,
-      "image": "/images/fresas-individuales.svg"
-    },
-    {
-      "title": "Caja de regalo",
-      "description": "Presentaciones de 6, 12 y 24 fresas para sorprender.",
-      "price": 180,
-      "image": "/images/caja-regalo.svg"
-    },
-    {
-      "title": "Arreglo especial",
-      "description": "Opciones para cumpleaños, aniversarios y fechas especiales.",
-      "price": 260,
-      "image": "/images/arreglo-especial.svg"
-    },
-    {
-      "title": "Bebida",
-      "description": "Malteadas de fresa, smoothies y aguas frescas.",
+      "id": "fresas-chocolate-jr",
+      "title": "Fresas con chocolate Jr",
+      "description": "Fresas cubiertas con chocolate. Tamaño Jr.",
       "price": 65,
-      "image": "/images/bebida-fresa.svg"
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-chocolate-senior",
+      "title": "Fresas con chocolate Senior",
+      "description": "Fresas cubiertas con chocolate. Tamaño Senior.",
+      "price": 95,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-blanco-jr",
+      "title": "Fresas con chocolate blanco Jr",
+      "description": "Fresas con chocolate blanco. Tamaño Jr.",
+      "price": 69,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-blanco-senior",
+      "title": "Fresas con chocolate blanco Senior",
+      "description": "Fresas con chocolate blanco. Tamaño Senior.",
+      "price": 99,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-mix-jr",
+      "title": "Fresas mix Jr",
+      "description": "Chocolate negro y blanco. Tamaño Jr.",
+      "price": 72,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-mix-senior",
+      "title": "Fresas mix Senior",
+      "description": "Chocolate negro y blanco. Tamaño Senior.",
+      "price": 105,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-oscuro-sin-azucar-jr",
+      "title": "Fresas con chocolate oscuro sin azúcar Jr",
+      "description": "Fresas con chocolate oscuro sin azúcar. Tamaño Jr.",
+      "price": 75,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-oscuro-sin-azucar-senior",
+      "title": "Fresas con chocolate oscuro sin azúcar Senior",
+      "description": "Fresas con chocolate oscuro sin azúcar. Tamaño Senior.",
+      "price": 109,
+      "image": "/images/fresas-individuales.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-dubai-jr",
+      "title": "Fresas Dubai Jr",
+      "description": "Especialidad Dubai. Tamaño Jr.",
+      "price": 85,
+      "image": "/images/arreglo-especial.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "fresas-dubai-senior",
+      "title": "Fresas Dubai Senior",
+      "description": "Especialidad Dubai. Tamaño Senior.",
+      "price": 125,
+      "image": "/images/arreglo-especial.svg",
+      "category": "fresas",
+      "active": true
+    },
+    {
+      "id": "mini-hotcakes",
+      "title": "Mini hotcakes (12 piezas)",
+      "description": "Incluye opciones: cajeta, nutella, chocolate o lechera.",
+      "price": 89,
+      "image": "/images/arreglo-especial.svg",
+      "category": "especiales",
+      "active": true
+    },
+    {
+      "id": "platanos-machos-jr",
+      "title": "Plátanos machos K-Fresita Jr",
+      "description": "Opciones: cajeta, nutella, chocolate o lechera.",
+      "price": 70,
+      "image": "/images/arreglo-especial.svg",
+      "category": "especiales",
+      "active": true
+    },
+    {
+      "id": "platanos-machos-senior",
+      "title": "Plátanos machos K-Fresita Senior",
+      "description": "Opciones: cajeta, nutella, chocolate o lechera.",
+      "price": 98,
+      "image": "/images/arreglo-especial.svg",
+      "category": "especiales",
+      "active": true
+    },
+    {
+      "id": "malteada-fresa-mediana",
+      "title": "Malteada de fresa Mediana",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 75,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-fresa-grande",
+      "title": "Malteada de fresa Grande",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 90,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-vainilla-mediana",
+      "title": "Malteada de vainilla Mediana",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 75,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-vainilla-grande",
+      "title": "Malteada de vainilla Grande",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 90,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-chocolate-mediana",
+      "title": "Malteada de chocolate Mediana",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 78,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-chocolate-grande",
+      "title": "Malteada de chocolate Grande",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 93,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-platano-mediana",
+      "title": "Malteada de plátano Mediana",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 76,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "malteada-platano-grande",
+      "title": "Malteada de plátano Grande",
+      "description": "Leche normal, deslactosada, avena o almendra.",
+      "price": 92,
+      "image": "/images/bebida-fresa.svg",
+      "category": "malteadas",
+      "active": true
+    },
+    {
+      "id": "combo-clasico",
+      "title": "K-Combo Clásico",
+      "description": "Incluye malteada mediana + fresas Jr con chocolate.",
+      "price": 135,
+      "image": "/images/caja-regalo.svg",
+      "category": "combos",
+      "active": true
+    },
+    {
+      "id": "combo-dubai",
+      "title": "K-Combo Dubai",
+      "description": "Incluye fresas Dubai Sr + malteada mediana + 1 topping.",
+      "price": 199,
+      "image": "/images/caja-regalo.svg",
+      "category": "combos",
+      "active": true
+    },
+    {
+      "id": "combo-familiar",
+      "title": "K-Combo Familiar",
+      "description": "Incluye 2 fresas Sr + 1 malteada grande + 2 toppings.",
+      "price": 289,
+      "image": "/images/caja-regalo.svg",
+      "category": "combos",
+      "active": true
     }
   ],
   "toppings": [
-    "Nueces",
-    "Sprinkles de colores",
-    "Galleta Oreo",
-    "Coco rallado",
+    "Galleta oreo triturada",
+    "Kinder bueno",
+    "Kinder Delice",
+    "Gansito triturado",
+    "Ferrero Rocher",
+    "M&M's",
+    "Mazapán",
     "Chispas de chocolate",
-    "Almendras",
-    "Decoración personalizada"
+    "Chispas de menta",
+    "Fresas",
+    "Plátano",
+    "Fruta picada",
+    "Granola",
+    "Cereales",
+    "Chispas de colores",
+    "Yogurth",
+    "Crema batida"
   ],
   "hours": [
     {
