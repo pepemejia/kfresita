@@ -5,12 +5,13 @@ const STORAGE_KEYS = {
 };
 
 const adminState = {
+  mode: 'local',
+  user: null,
+  orders: [],
   baseMenu: [],
   activeMenu: [],
-  orders: [],
   orderFilter: 'all',
-  mode: 'local',
-  user: null
+  uploadedImageData: ''
 };
 
 const supabaseConfig = window.KFRESITA_SUPABASE || null;
@@ -21,6 +22,13 @@ const supabaseClient = (window.supabase && supabaseConfig?.url && supabaseConfig
 function $(id) { return document.getElementById(id); }
 function money(value) { return `$${Number(value || 0).toFixed(2)}`; }
 function safeArray(value) { return Array.isArray(value) ? value : []; }
+
+function setStatus(id, message, type = '') {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = message;
+  el.className = `status ${type}`.trim();
+}
 
 function readStorage(key, fallback) {
   try {
@@ -36,27 +44,13 @@ function writeStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function setStatus(id, text, type) {
-  const el = $(id);
-  if (!el) return;
-  el.textContent = text;
-  el.className = `status ${type || ''}`.trim();
-}
-
-function formatDate(value) {
-  if (!value) return 'Sin fecha';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
-}
-
 function normalizeOrder(order = {}) {
   return {
-    id: order.id || order.order_code || order.order_id || 'Pedido',
+    id: order.id || crypto.randomUUID(),
     createdAt: order.createdAt || order.created_at || new Date().toISOString(),
-    customerName: order.customerName || order.customer_name || 'Sin nombre',
-    customerPhone: order.customerPhone || order.customer_phone || 'Sin teléfono',
-    deliveryMode: order.deliveryMode || order.delivery_mode || '-',
+    customerName: order.customerName || order.customer_name || 'Cliente',
+    customerPhone: order.customerPhone || order.customer_phone || '',
+    deliveryMode: order.deliveryMode || order.delivery_mode || 'domicilio',
     deliveryAddress: order.deliveryAddress || order.delivery_address || 'Sin dirección',
     deliveryWhen: order.deliveryWhen || order.delivery_when || 'ahora',
     deliveryDate: order.deliveryDate || order.delivery_date || '',
@@ -69,27 +63,7 @@ function normalizeOrder(order = {}) {
     items: safeArray(order.items)
   };
 }
-function mapCategory(title = '') {
-  const text = String(title).toLowerCase();
 
-  if (
-    text.includes('malteada') ||
-    text.includes('vainilla') ||
-    text.includes('plátano') ||
-    text.includes('platano') ||
-    text.includes('chocolate')
-  ) return 'malteadas';
-
-  if (text.includes('combo')) return 'combos';
-
-  if (
-    text.includes('hotcakes') ||
-    text.includes('plátanos machos') ||
-    text.includes('platano macho')
-  ) return 'especiales';
-
-  return 'fresas';
-}
 function normalizeProduct(item = {}) {
   return {
     id: item.id || crypto.randomUUID(),
@@ -97,7 +71,7 @@ function normalizeProduct(item = {}) {
     description: item.description || '',
     price: Number(item.price || 0),
     image: item.image || '/images/hero-fresas.svg',
-    category: item.category || mapCategory(item.title || item.name || ''),
+    category: item.category || 'fresas',
     active: item.active !== false,
     created_at: item.created_at || new Date().toISOString()
   };
@@ -106,10 +80,76 @@ function normalizeProduct(item = {}) {
 function setModeBadge() {
   const badge = $('adminConnectionBadge');
   if (!badge) return;
+
   badge.textContent = adminState.mode === 'supabase'
     ? `Conectado a Supabase${adminState.user?.email ? ` · ${adminState.user.email}` : ''}`
     : 'Modo local de prueba';
+
   badge.className = `admin-connection-badge ${adminState.mode === 'supabase' ? 'ok' : 'warn'}`;
+}
+
+function resetImagePreview() {
+  adminState.uploadedImageData = '';
+  const previewWrap = $('productImagePreviewWrap');
+  const preview = $('productImagePreview');
+  const input = $('productImageFile');
+
+  if (preview) preview.src = '';
+  if (previewWrap) previewWrap.classList.add('hidden');
+  if (input) input.value = '';
+}
+
+function readFileAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('No se pudo leer la imagen.'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function setupImageUpload() {
+  const input = $('productImageFile');
+  if (!input) return;
+
+  input.addEventListener('change', async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      resetImagePreview();
+      return;
+    }
+
+    const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      setStatus('adminProductStatus', 'Formato no válido. Usa JPG, PNG o WEBP.', 'error');
+      resetImagePreview();
+      return;
+    }
+
+    const maxSize = 2 * 1024 * 1024;
+    if (file.size > maxSize) {
+      setStatus('adminProductStatus', 'La imagen pesa demasiado. Usa una menor a 2 MB.', 'error');
+      resetImagePreview();
+      return;
+    }
+
+    try {
+      const dataUrl = await readFileAsDataURL(file);
+      adminState.uploadedImageData = dataUrl;
+
+      const preview = $('productImagePreview');
+      const previewWrap = $('productImagePreviewWrap');
+
+      if (preview) preview.src = dataUrl;
+      if (previewWrap) previewWrap.classList.remove('hidden');
+
+      setStatus('adminProductStatus', 'Imagen cargada correctamente.', 'ok');
+    } catch (error) {
+      console.error(error);
+      setStatus('adminProductStatus', 'No se pudo procesar la imagen.', 'error');
+      resetImagePreview();
+    }
+  });
 }
 
 async function loadOrders() {
@@ -156,78 +196,50 @@ function updateSummary() {
   const revenue = adminState.orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
   $('ordersCount').textContent = String(adminState.orders.length);
   $('ordersRevenue').textContent = money(revenue);
-  $('productsCount').textContent = String(adminState.activeMenu.filter((item) => item.active !== false).length);
-}
-
-function filteredOrders() {
-  return adminState.orders.filter((order) =>
-    adminState.orderFilter === 'all' ? true : order.status === adminState.orderFilter
-  );
-}
-
-async function updateOrderStatus(orderId, status) {
-  if (adminState.mode === 'supabase' && supabaseClient) {
-    const { error } = await supabaseClient
-      .from('orders')
-      .update({ status })
-      .eq('id', orderId);
-
-    if (error) {
-      setStatus('adminProductStatus', 'No se pudo actualizar el pedido.', 'error');
-      return;
-    }
-
-    await refreshAdminData();
-    return;
-  }
-
-  adminState.orders = adminState.orders.map((order) =>
-    order.id === orderId ? { ...order, status } : order
-  );
-  writeStorage(STORAGE_KEYS.orders, adminState.orders);
-  renderOrders();
-  updateSummary();
+  $('productsCount').textContent = String(adminState.activeMenu.length);
 }
 
 function renderOrders() {
   const list = $('ordersList');
   if (!list) return;
 
-  list.innerHTML = '';
-  const orders = filteredOrders();
+  const filtered = adminState.orderFilter === 'all'
+    ? adminState.orders
+    : adminState.orders.filter((order) => order.status === adminState.orderFilter);
 
-  if (!orders.length) {
-    list.innerHTML = '<p class="empty-cart">Todavía no hay pedidos para este filtro.</p>';
+  list.innerHTML = '';
+
+  if (!filtered.length) {
+    list.innerHTML = '<p class="empty-cart">No hay pedidos para mostrar.</p>';
     return;
   }
 
-  orders.forEach((order) => {
+  filtered.forEach((order) => {
     const card = document.createElement('article');
-    card.className = 'order-admin-card';
+    card.className = 'panel admin-order-card';
 
     const itemsHtml = safeArray(order.items)
-      .map((item) => `<li>${item.title} × ${item.quantity} — ${money(item.price * item.quantity)}</li>`)
+      .map((item) => `<li>${item.title} x${item.quantity} · ${money(Number(item.price) * Number(item.quantity))}</li>`)
       .join('');
 
     card.innerHTML = `
       <div class="order-admin-head">
         <div>
-          <strong>${order.id || 'Pedido'}</strong>
-          <p>${formatDate(order.createdAt)}</p>
+          <strong>${order.customerName}</strong>
+          <p>${new Date(order.createdAt).toLocaleString()}</p>
         </div>
         <select class="admin-status-select" data-order-id="${order.id}">
           <option value="nuevo" ${order.status === 'nuevo' ? 'selected' : ''}>Nuevo</option>
-          <option value="preparando" ${order.status === 'preparando' ? 'selected' : ''}>Preparando</option>
+          <option value="en_proceso" ${order.status === 'en_proceso' ? 'selected' : ''}>En proceso</option>
           <option value="listo" ${order.status === 'listo' ? 'selected' : ''}>Listo</option>
           <option value="entregado" ${order.status === 'entregado' ? 'selected' : ''}>Entregado</option>
-          <option value="cancelado" ${order.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
         </select>
       </div>
+
       <div class="order-admin-body">
-        <p><strong>Cliente:</strong> ${order.customerName}</p>
-        <p><strong>Teléfono:</strong> ${order.customerPhone}</p>
-        <p><strong>Entrega:</strong> ${order.deliveryMode} / ${order.deliveryAddress}</p>
-        <p><strong>Programación:</strong> ${order.deliveryWhen}${order.deliveryDate ? ` / ${order.deliveryDate}` : ''}${order.deliveryTime ? ` ${order.deliveryTime}` : ''}</p>
+        <p><strong>Tel:</strong> ${order.customerPhone || 'No proporcionado'}</p>
+        <p><strong>Entrega:</strong> ${order.deliveryMode} · ${order.deliveryAddress}</p>
+        <p><strong>Horario:</strong> ${order.deliveryWhen}${order.deliveryDate ? ` / ${order.deliveryDate}` : ''}${order.deliveryTime ? ` ${order.deliveryTime}` : ''}</p>
         <p><strong>Notas:</strong> ${order.notes || 'Sin notas'}</p>
         <ul>${itemsHtml}</ul>
         <div class="order-admin-total"><span>Total</span><strong>${money(order.total)}</strong></div>
@@ -239,6 +251,30 @@ function renderOrders() {
   list.querySelectorAll('.admin-status-select').forEach((select) => {
     select.addEventListener('change', () => updateOrderStatus(select.dataset.orderId, select.value));
   });
+}
+
+async function updateOrderStatus(orderId, nextStatus) {
+  adminState.orders = adminState.orders.map((order) =>
+    order.id === orderId ? { ...order, status: nextStatus } : order
+  );
+
+  if (adminState.mode === 'supabase' && supabaseClient) {
+    const { error } = await supabaseClient
+      .from('orders')
+      .update({ status: nextStatus })
+      .eq('id', orderId);
+
+    if (error) {
+      console.error(error);
+      setStatus('adminProductStatus', 'No se pudo actualizar el pedido.', 'error');
+      return;
+    }
+  } else {
+    writeStorage(STORAGE_KEYS.orders, adminState.orders);
+  }
+
+  renderOrders();
+  updateSummary();
 }
 
 async function persistMenu() {
@@ -337,67 +373,65 @@ function renderProducts() {
   });
 }
 
-async function showDashboard() {
-  $('adminLoginPanel')?.classList.add('hidden');
-  $('adminDashboard')?.classList.remove('hidden');
-  setModeBadge();
-  await refreshAdminData();
+function loginLocal() {
+  adminState.mode = 'local';
+  adminState.user = { email: 'modo-local@kfresita.app' };
+  writeStorage(STORAGE_KEYS.adminSession, { mode: 'local' });
+  showDashboard();
 }
 
 async function loginWithSupabase(email, password) {
-  if (!supabaseClient) return false;
+  if (!supabaseClient) {
+    setStatus('adminLoginStatus', 'Supabase no está configurado. Usa modo local.', 'error');
+    return;
+  }
 
   const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
 
   if (error) {
-    setStatus('adminLoginStatus', error.message || 'No se pudo iniciar sesión.', 'error');
-    return false;
+    console.error(error);
+    setStatus('adminLoginStatus', 'No se pudo iniciar sesión.', 'error');
+    return;
   }
 
   adminState.mode = 'supabase';
-  adminState.user = data.user;
-  writeStorage(STORAGE_KEYS.adminSession, { mode: 'supabase' });
-  return true;
-}
+  adminState.user = data.user || null;
+  writeStorage(STORAGE_KEYS.adminSession, {
+    mode: 'supabase',
+    email: adminState.user?.email || email
+  });
 
-function loginLocal() {
-  adminState.mode = 'local';
-  adminState.user = null;
-  writeStorage(STORAGE_KEYS.adminSession, { mode: 'local' });
-  setStatus('adminLoginStatus', 'Entraste en modo local de prueba.', 'ok');
-  showDashboard();
+  await showDashboard();
 }
 
 async function setupAuth() {
-  const savedSession = readStorage(STORAGE_KEYS.adminSession, null);
+  const session = readStorage(STORAGE_KEYS.adminSession, null);
 
-  if (supabaseClient) {
-    const { data } = await supabaseClient.auth.getSession();
-    if (data.session?.user) {
+  if (session?.mode === 'local') {
+    adminState.mode = 'local';
+    adminState.user = { email: 'modo-local@kfresita.app' };
+    await showDashboard();
+    return;
+  }
+
+  if (session?.mode === 'supabase' && supabaseClient) {
+    const { data } = await supabaseClient.auth.getUser();
+    if (data?.user) {
       adminState.mode = 'supabase';
-      adminState.user = data.session.user;
+      adminState.user = data.user;
       await showDashboard();
       return;
     }
-  }
-
-  if (savedSession?.mode === 'local') {
-    adminState.mode = 'local';
-    showDashboard();
   }
 
   $('adminLoginForm')?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const email = $('adminEmail')?.value.trim();
-    const password = $('adminPassword')?.value || '';
+    const password = $('adminPassword')?.value.trim();
 
-    if (supabaseClient && email && password) {
-      const ok = await loginWithSupabase(email, password);
-      if (ok) {
-        setStatus('adminLoginStatus', '', '');
-        showDashboard();
-      }
+    if (email && password) {
+      await loginWithSupabase(email, password);
       return;
     }
 
@@ -422,8 +456,8 @@ function setupProducts() {
     const title = $('productTitle')?.value.trim();
     const description = $('productDescription')?.value.trim();
     const price = Number($('productPrice')?.value || 0);
-    const image = $('productImage')?.value || '/images/hero-fresas.svg';
     const category = $('productCategory')?.value || 'fresas';
+    const image = adminState.uploadedImageData || '/images/hero-fresas.svg';
 
     if (!title || !description || price <= 0) {
       setStatus('adminProductStatus', 'Completa nombre, descripción y precio válido.', 'error');
@@ -444,6 +478,7 @@ function setupProducts() {
 
     await persistMenu();
     $('productForm')?.reset();
+    resetImagePreview();
   });
 
   $('resetProducts')?.addEventListener('click', async () => {
@@ -491,6 +526,13 @@ async function refreshAdminData() {
   renderProducts();
 }
 
+async function showDashboard() {
+  $('adminLoginPanel')?.classList.add('hidden');
+  $('adminDashboard')?.classList.remove('hidden');
+  setModeBadge();
+  await refreshAdminData();
+}
+
 async function initAdmin() {
   const contentRes = await fetch('/data/site-content.json');
   if (!contentRes.ok) throw new Error('No se pudo cargar el menú base.');
@@ -498,6 +540,7 @@ async function initAdmin() {
   const content = await contentRes.json();
   adminState.baseMenu = safeArray(content.menu).map(normalizeProduct);
 
+  setupImageUpload();
   setupProducts();
   setupOrders();
   await setupAuth();
@@ -521,5 +564,5 @@ window.addEventListener('storage', (event) => {
 
 initAdmin().catch((error) => {
   console.error(error);
-  setStatus('adminLoginStatus', 'No se pudo cargar el panel.', 'error');
+  setStatus('adminLoginStatus', 'No se pudo iniciar el panel administrativo.', 'error');
 });
