@@ -53,7 +53,7 @@
       "title": "Fresas con chocolate oscuro sin azúcar ",
       "description": "Disponible en tamaño Jr y Senior.",
       "price": 109,
-      "image": "/images/freosc.svg",
+      "image": "/images/freosc.png",
       "category": "fresas",
       "active": true
     },
@@ -81,7 +81,7 @@
       "title": "Plátanos machos K-Fresita ",
       "description": "Opciones: cajeta, nutella, chocolate o lechera. Disponible en tamaño Jr y Senior.",
       "price": 70,
-      "image": "/images/plta.png",
+      "image": "/images/plat.png",
       "category": "especiales",
       "active": true
     },
@@ -111,7 +111,7 @@
       "title": "Malteada de chocolate ",
       "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 78,
-      "image": "/images/bebida-fresa.svg",
+      "image": "/images/malcho.png",
       "category": "malteadas",
       "active": true
     },
