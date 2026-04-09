@@ -29,71 +29,39 @@
     
     {
       "id": "fresas-blanco-jr",
-      "title": "Fresas con chocolate blanco Jr",
-      "description": "Fresas con chocolate blanco. Tamaño Jr.",
+      "title": "Fresas con chocolate blanco ",
+      "description": "Disponible en tamaño Jr y Senior.",
       "price": 69,
       "image": "/images/FCB.png",
       "category": "fresas",
       "active": true
     },
-    {
-      "id": "fresas-blanco-senior",
-      "title": "Fresas con chocolate blanco Senior",
-      "description": "Fresas con chocolate blanco. Tamaño Senior.",
-      "price": 99,
-      "image": "/images/FCB.png",
-      "category": "fresas",
-      "active": true
-    },
-    {
-      "id": "fresas-mix-jr",
-      "title": "Fresas mix Jr",
-      "description": "Chocolate negro y blanco. Tamaño Jr.",
-      "price": 72,
-      "image": "/images/MIX.png",
-      "category": "fresas",
-      "active": true
-    },
+  
+   
     {
       "id": "fresas-mix-senior",
-      "title": "Fresas mix Senior",
-      "description": "Chocolate negro y blanco. Tamaño Senior.",
+      "title": "Fresas mix ",
+      "description": "Disponible en tamaño Jr y Senior.",
       "price": 105,
       "image": "/images/MIX.png",
       "category": "fresas",
       "active": true
     },
-    {
-      "id": "fresas-oscuro-sin-azucar-jr",
-      "title": "Fresas con chocolate oscuro sin azúcar Jr",
-      "description": "Fresas con chocolate oscuro sin azúcar. Tamaño Jr.",
-      "price": 75,
-      "image": "/images/fresas-individuales.svg",
-      "category": "fresas",
-      "active": true
-    },
+  
     {
       "id": "fresas-oscuro-sin-azucar-senior",
-      "title": "Fresas con chocolate oscuro sin azúcar Senior",
-      "description": "Fresas con chocolate oscuro sin azúcar. Tamaño Senior.",
+      "title": "Fresas con chocolate oscuro sin azúcar ",
+      "description": "Disponible en tamaño Jr y Senior.",
       "price": 109,
       "image": "/images/fresas-individuales.svg",
       "category": "fresas",
       "active": true
     },
-    {
-      "id": "fresas-dubai-jr",
-      "title": "Fresas Dubai Jr",
-      "description": "Especialidad Dubai. Tamaño Jr.",
-      "price": 85,
-      "image": "/images/FD.png",
-      "category": "fresas",
-      "active": true
-    },
+
     {
       "id": "fresas-dubai-senior",
-      "title": "Fresas Dubai Senior",
-      "description": "Especialidad Dubai. Tamaño Senior.",
+      "title": "Fresas Dubai ",
+      "description": "Disponible en tamaño Jr y Senior.",
       "price": 125,
       "image": "/images/FD.png",
       "category": "fresas",
@@ -110,35 +78,19 @@
     },
     {
       "id": "platanos-machos-jr",
-      "title": "Plátanos machos K-Fresita Jr",
-      "description": "Opciones: cajeta, nutella, chocolate o lechera.",
+      "title": "Plátanos machos K-Fresita ",
+      "description": "Opciones: cajeta, nutella, chocolate o lechera. Disponible en tamaño Jr y Senior.",
       "price": 70,
       "image": "/images/PLATANOS.png",
       "category": "especiales",
       "active": true
     },
-    {
-      "id": "platanos-machos-senior",
-      "title": "Plátanos machos K-Fresita Senior",
-      "description": "Opciones: cajeta, nutella, chocolate o lechera.",
-      "price": 98,
-      "image": "/images/PLATANOS.png",
-      "category": "especiales",
-      "active": true
-    },
-    {
-      "id": "malteada-fresa-mediana",
-      "title": "Malteada de fresa Mediana",
-      "description": "Leche normal, deslactosada, avena o almendra.",
-      "price": 75,
-      "image": "/images/bebida-fresa.svg",
-      "category": "malteadas",
-      "active": true
-    },
+
+  
     {
       "id": "malteada-fresa-grande",
-      "title": "Malteada de fresa Grande",
-      "description": "Leche normal, deslactosada, avena o almendra.",
+      "title": "Malteada de fresa ",
+      "description": "Leche normal, deslactosada, avena o almendra. Disponible en tamaño Mediano y Grande.",
       "price": 90,
       "image": "/images/bebida-fresa.svg",
       "category": "malteadas",
@@ -146,53 +98,29 @@
     },
     {
       "id": "malteada-vainilla-mediana",
-      "title": "Malteada de vainilla Mediana",
-      "description": "Leche normal, deslactosada, avena o almendra.",
+      "title": "Malteada de vainilla ",
+      "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 75,
       "image": "/images/bebida-fresa.svg",
       "category": "malteadas",
       "active": true
     },
-    {
-      "id": "malteada-vainilla-grande",
-      "title": "Malteada de vainilla Grande",
-      "description": "Leche normal, deslactosada, avena o almendra.",
-      "price": 90,
-      "image": "/images/bebida-fresa.svg",
-      "category": "malteadas",
-      "active": true
-    },
+    
     {
       "id": "malteada-chocolate-mediana",
-      "title": "Malteada de chocolate Mediana",
-      "description": "Leche normal, deslactosada, avena o almendra.",
+      "title": "Malteada de chocolate ",
+      "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 78,
       "image": "/images/bebida-fresa.svg",
       "category": "malteadas",
       "active": true
     },
-    {
-      "id": "malteada-chocolate-grande",
-      "title": "Malteada de chocolate Grande",
-      "description": "Leche normal, deslactosada, avena o almendra.",
-      "price": 93,
-      "image": "/images/bebida-fresa.svg",
-      "category": "malteadas",
-      "active": true
-    },
-    {
-      "id": "malteada-platano-mediana",
-      "title": "Malteada de plátano Mediana",
-      "description": "Leche normal, deslactosada, avena o almendra.",
-      "price": 76,
-      "image": "/images/bebida-fresa.svg",
-      "category": "malteadas",
-      "active": true
-    },
+    
+    
     {
       "id": "malteada-platano-grande",
-      "title": "Malteada de plátano Grande",
-      "description": "Leche normal, deslactosada, avena o almendra.",
+      "title": "Malteada de plátano ",
+      "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 92,
       "image": "/images/bebida-fresa.svg",
       "category": "malteadas",
