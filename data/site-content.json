@@ -32,7 +32,7 @@
       "title": "Fresas con chocolate blanco ",
       "description": "Disponible en tamaño Jr y Senior.",
       "price": 69,
-      "image": "/images/FCB.png",
+      "image": "/images/frebla.png",
       "category": "fresas",
       "active": true
     },
@@ -43,7 +43,7 @@
       "title": "Fresas mix ",
       "description": "Disponible en tamaño Jr y Senior.",
       "price": 105,
-      "image": "/images/MIX.png",
+      "image": "/images/fremix.png",
       "category": "fresas",
       "active": true
     },
@@ -53,7 +53,7 @@
       "title": "Fresas con chocolate oscuro sin azúcar ",
       "description": "Disponible en tamaño Jr y Senior.",
       "price": 109,
-      "image": "/images/fresas-individuales.svg",
+      "image": "/images/freosc.svg",
       "category": "fresas",
       "active": true
     },
@@ -63,7 +63,7 @@
       "title": "Fresas Dubai ",
       "description": "Disponible en tamaño Jr y Senior.",
       "price": 125,
-      "image": "/images/FD.png",
+      "image": "/images/fredub.png",
       "category": "fresas",
       "active": true
     },
@@ -72,7 +72,7 @@
       "title": "Mini hotcakes (12 piezas)",
       "description": "Incluye opciones: cajeta, nutella, chocolate o lechera.",
       "price": 89,
-      "image": "/images/HOCAKE.png",
+      "image": "/images/hotc.png",
       "category": "especiales",
       "active": true
     },
@@ -81,7 +81,7 @@
       "title": "Plátanos machos K-Fresita ",
       "description": "Opciones: cajeta, nutella, chocolate o lechera. Disponible en tamaño Jr y Senior.",
       "price": 70,
-      "image": "/images/PLATANOS.png",
+      "image": "/images/plta.png",
       "category": "especiales",
       "active": true
     },
@@ -92,7 +92,7 @@
       "title": "Malteada de fresa ",
       "description": "Leche normal, deslactosada, avena o almendra. Disponible en tamaño Mediano y Grande.",
       "price": 90,
-      "image": "/images/bebida-fresa.svg",
+      "image": "/images/malfre.png",
       "category": "malteadas",
       "active": true
     },
@@ -101,7 +101,7 @@
       "title": "Malteada de vainilla ",
       "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 75,
-      "image": "/images/bebida-fresa.svg",
+      "image": "/images/malvai.png",
       "category": "malteadas",
       "active": true
     },
@@ -122,7 +122,7 @@
       "title": "Malteada de plátano ",
       "description": "Leche normal, deslactosada, avena o almendra.  Disponible en tamaño Mediano y Grande.",
       "price": 92,
-      "image": "/images/bebida-fresa.svg",
+      "image": "/images/frepla.png",
       "category": "malteadas",
       "active": true
     },
@@ -131,7 +131,7 @@
       "title": "K-Combo Clásico",
       "description": "Incluye malteada mediana + fresas Jr con chocolate.",
       "price": 135,
-      "image": "/images/caja-regalo.svg",
+      "image": "/images/comcla.png",
       "category": "combos",
       "active": true
     },
@@ -140,7 +140,7 @@
       "title": "K-Combo Dubai",
       "description": "Incluye fresas Dubai Sr + malteada mediana + 1 topping.",
       "price": 199,
-      "image": "/images/caja-regalo.svg",
+      "image": "/images/comdub.png",
       "category": "combos",
       "active": true
     },
@@ -149,7 +149,7 @@
       "title": "K-Combo Familiar",
       "description": "Incluye 2 fresas Sr + 1 malteada grande + 2 toppings.",
       "price": 289,
-      "image": "/images/caja-regalo.svg",
+      "image": "/images/comfam.png",
       "category": "combos",
       "active": true
     }
