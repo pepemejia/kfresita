@@ -442,8 +442,19 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
   padding: 40px 24px 24px;
 }
-.hero-overlay-logo-only .light-kicker,
-.hero-overlay-logo-only h3,
+.hero-overlay-logo-only .light-kicker {
+  margin: 0 0 18px;
+  color: #000;
+}
+
+.hero-overlay-logo-only h3 {
+  margin: 0;
+  max-width: 700px;
+  color: #000;
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+}
+
 .hero-overlay-logo-only p {
   text-align: center;
   margin-left: auto;
