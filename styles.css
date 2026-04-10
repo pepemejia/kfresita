@@ -436,10 +436,18 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-overlay-logo-only {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: 32px;
+  padding: 70px 24px 24px;
+}
+.hero-overlay-logo-only .light-kicker,
+.hero-overlay-logo-only h3,
+.hero-overlay-logo-only p {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero-logo-center {
   width: min(320px, 80%);
