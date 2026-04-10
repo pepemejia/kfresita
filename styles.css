@@ -425,3 +425,16 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(16px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
 }
+.hero-logo-wrap {
+  margin-bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-logo-main {
+  width: 130px;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
