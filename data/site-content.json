@@ -176,15 +176,15 @@
   "hours": [
     {
       "day": "Lunes a Viernes",
-      "time": "10:00 AM – 8:00 PM"
+      "time": "11:00 AM – 8:00 PM"
     },
     {
       "day": "Sábado",
-      "time": "10:00 AM – 9:00 PM"
+      "time": "11:00 AM – 9:00 PM"
     },
     {
       "day": "Domingo",
-      "time": "11:00 AM – 7:00 PM"
+      "time": "11:00 AM – 9:00 PM"
     }
   ],
   "contactText": "K-Fresita puede operar como una marca ideal para venta directa, regalos y eventos especiales, con un concepto premium visualmente atractivo y fácil de promocionar."
