@@ -370,3 +370,10 @@ a { color: inherit; text-decoration: none; }
   border: 1px solid var(--line);
   display: block;
 }
+
+.menu-note {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
