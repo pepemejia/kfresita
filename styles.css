@@ -395,7 +395,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 520px;
   border-radius: 36px;
   overflow: hidden;
-  background-image: url('/images/hero-fondo-limpio.jpg');
+  background-image: url('/images/hero-fondo-limpio.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
